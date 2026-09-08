@@ -6851,6 +6851,9 @@ static int hci_le_create_conn_sync(struct hci_dev *hdev, void *data)
 	 */
 	set_bit(HCI_CONN_CREATE, &conn->flags);
 
+	bt_dev_info(hdev, "LE connect: dialling %pMR (type %u)",
+		    &conn->dst, conn->dst_type);
+
 	/* Send command LE Extended Create Connection if supported */
 	if (use_ext_conn(hdev)) {
 		err = hci_le_ext_create_conn_sync(hdev, conn, own_addr_type);
